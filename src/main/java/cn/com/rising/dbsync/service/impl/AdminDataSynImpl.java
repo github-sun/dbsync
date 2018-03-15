@@ -1,14 +1,16 @@
 package cn.com.rising.dbsync.service.impl;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import cn.com.rising.dbsync.entity.WriteData;
+import cn.com.rising.dbsync.entity.AdminData;
+import cn.com.rising.dbsync.entity.BaseData;
 import cn.com.rising.dbsync.service.AbstractReadWirte;
-import cn.com.rising.dbsync.service.IDataSynService;
 
-public class AdminDataSynImpl extends AbstractReadWirte implements IDataSynService{
+public class AdminDataSynImpl extends AbstractReadWirte {
 
 	private static final Logger logger = Logger.getLogger(AdminDataSynImpl.class);
 
@@ -17,21 +19,20 @@ public class AdminDataSynImpl extends AbstractReadWirte implements IDataSynServi
 		// TODO Auto-generated constructor stub
 	}
 
-	public void onService() {
-		executeReadWrite();
-		logger.info("开始进行执行同步操作");
+	@Override
+	public List<? extends BaseData> readData() {
+		List<AdminData> list = new ArrayList<AdminData>();
+		AdminData data = new AdminData();
+		data.setUsername("test");
+		list.add(data);
+		return list;
 	}
 
 	@Override
-	public WriteData<?> readData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void writeData(WriteData<?> data) {
-		// TODO Auto-generated method stub
-		
+	public void writeData(List<? extends BaseData> data) {
+		@SuppressWarnings("unchecked")
+		List<AdminData> list = (List<AdminData>) data;
+		logger.info("list "+list.get(0).getUsername());
 	}
 
 }

@@ -57,8 +57,11 @@ public class DatabaseSyncTask implements org.quartz.Job {
 			IDataSynService dataSyn = (IDataSynService) obj;
 			long eStart = new Date().getTime();
 			dataSyn.onService();
-			this.logger.info(jobTitle + " 结束任务调度: " + (new Date().getTime() - eStart) + "ms");
+			logger.info(jobTitle + " 结束任务调度: " + (new Date().getTime() - eStart) + "ms");
 		}
+		
+		DatabaseUtil.closeConnection(inner);
+		DatabaseUtil.closeConnection(outer);
 	}
 
 }
