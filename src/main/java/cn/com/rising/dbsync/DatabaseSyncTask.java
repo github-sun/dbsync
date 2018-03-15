@@ -29,15 +29,8 @@ public class DatabaseSyncTask implements org.quartz.Job {
 		DatabasePoolConnection innerSource = (DatabasePoolConnection) data.get("inner");
 		DatabasePoolConnection outerSource = (DatabasePoolConnection) data.get("outer");
 		
-		logger.error(jobTitle + "获取连接对象出错,请检查00000");
-		
 		Connection inner = DatabaseUtil.createConnection(innerSource);
-		
-		logger.error(jobTitle + "获取连接对象出错,请检查11111 inner "+inner);
-		
 		Connection outer = DatabaseUtil.createConnection(outerSource);
-		
-		logger.error(jobTitle + "获取连接对象出错,请检查22222 outer "+outer);
 		
 		if (inner == null || outer == null) {
 			logger.error(jobTitle + "获取连接对象出错,请检查 inner "+inner + " outer "+outer);
