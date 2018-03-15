@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <code>4500000001</code>
+    <inner>
+        <type>mysql</type>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://194.168.11.111:3306/test?characterEncoding=utf-8</url>
+        <username>root</username>
+        <password>root</password>
+        <initialSize>2</initialSize>
+        <maxActive>300</maxActive>
+        <maxWait>60000</maxWait>
+        <timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+        <minEvictableIdleTimeMillis>300000</minEvictableIdleTimeMillis>
+    </inner>
+    <outer>
+        <type>mysql</type>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://194.168.11.109:3306/test?characterEncoding=utf-8</url>
+        <username>root</username>
+        <password>root</password>
+        <initialSize>2</initialSize>
+        <maxActive>300</maxActive>
+        <maxWait>60000</maxWait>
+        <timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+        <minEvictableIdleTimeMillis>300000</minEvictableIdleTimeMillis>
+    </outer>
+    <jobs>
+        <job>
+            <name>Admin</name>
+            <cron>0/10 * * * * ?</cron>
+            <executeState>1</executeState>
+            <classname>cn.com.rising.dbsync.service.impl.AdminDataSynImpl</classname>
+        </job>
+    </jobs>
+</root>

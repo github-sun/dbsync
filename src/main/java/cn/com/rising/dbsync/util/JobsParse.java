@@ -1,5 +1,7 @@
 package cn.com.rising.dbsync.util;
 
+import java.io.File;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +28,9 @@ public class JobsParse {
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
 			// 读取xml的配置文件名，并获取其里面的节点
-			Element root = reader.read("jobs.xml").getRootElement();
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			InputStream is = classloader.getResourceAsStream("jobs.xml");
+			Element root = reader.read(is).getRootElement();
 			Element inner = root.element("inner");
 			Element outer = root.element("outer");
 			Element jobs = root.element("jobs");

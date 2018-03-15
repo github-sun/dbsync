@@ -16,6 +16,17 @@ public class DatabaseSource {
 	
 	//数据库驱动
 	private String driver;
+	
+	//druid初始化大小
+	private String initialSize;
+	
+	private String maxActive;
+	
+	private String maxWait;
+	
+	private String timeBetweenEvictionRunsMillis;
+	
+	private String minEvictableIdleTimeMillis;
 
 	public String getUrl() {
 		return url;
@@ -57,9 +68,52 @@ public class DatabaseSource {
 		this.driver = driver;
 	}
 
+	public String getInitialSize() {
+		return initialSize;
+	}
+
+	public void setInitialSize(String initialSize) {
+		this.initialSize = initialSize;
+	}
+
+	public String getMaxActive() {
+		return maxActive;
+	}
+
+	public void setMaxActive(String maxActive) {
+		this.maxActive = maxActive;
+	}
+
+	public String getMaxWait() {
+		return maxWait;
+	}
+
+	public void setMaxWait(String maxWait) {
+		this.maxWait = maxWait;
+	}
+
+	public String getTimeBetweenEvictionRunsMillis() {
+		return timeBetweenEvictionRunsMillis;
+	}
+
+	public void setTimeBetweenEvictionRunsMillis(String timeBetweenEvictionRunsMillis) {
+		this.timeBetweenEvictionRunsMillis = timeBetweenEvictionRunsMillis;
+	}
+
+	public String getMinEvictableIdleTimeMillis() {
+		return minEvictableIdleTimeMillis;
+	}
+
+	public void setMinEvictableIdleTimeMillis(String minEvictableIdleTimeMillis) {
+		this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
+	}
+
 	@Override
 	public String toString() {
-		return "DataSource [url=" + url + ", username=" + username + ", password=" + password + ", type=" + type
-				+ ", driver=" + driver + "]";
+		return "DatabaseSource [url=" + url + ", username=" + username + ", password=" + password + ", type=" + type
+				+ ", driver=" + driver + ", initialSize=" + initialSize + ", maxActive=" + maxActive + ", maxWait="
+				+ maxWait + ", timeBetweenEvictionRunsMillis=" + timeBetweenEvictionRunsMillis
+				+ ", minEvictableIdleTimeMillis=" + minEvictableIdleTimeMillis + "]";
 	}
+
 }

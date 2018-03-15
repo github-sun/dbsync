@@ -9,8 +9,10 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import cn.com.rising.dbsync.db.DatabasePoolConnection;
 import cn.com.rising.dbsync.entity.Job;
 import cn.com.rising.dbsync.service.IDataSyn;
+import cn.com.rising.dbsync.util.DatabaseUtil;
 
 public class DatabaseSyncTask implements org.quartz.Job {
 
@@ -18,10 +20,30 @@ public class DatabaseSyncTask implements org.quartz.Job {
 
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		JobDataMap data = context.getJobDetail().getJobDataMap();
-		Connection inner = (Connection) data.get("inner");
-		Connection outer = (Connection) data.get("outer");
+		
 		Job job = (Job) data.get("job");
 		String jobTitle = (String) data.get("logTitle");
+		
+		logger.info(jobTitle + " 启动任务调度");
+		
+		DatabasePoolConnection innerSource = (DatabasePoolConnection) data.get("inner");
+		DatabasePoolConnection outerSource = (DatabasePoolConnection) data.get("outer");
+		
+		logger.error(jobTitle + "获取连接对象出错,请检查00000");
+		
+		Connection inner = DatabaseUtil.createConnection(innerSource);
+		
+		logger.error(jobTitle + "获取连接对象出错,请检查11111 inner "+inner);
+		
+		Connection outer = DatabaseUtil.createConnection(outerSource);
+		
+		logger.error(jobTitle + "获取连接对象出错,请检查22222 outer "+outer);
+		
+		if (inner == null || outer == null) {
+			logger.error(jobTitle + "获取连接对象出错,请检查 inner "+inner + " outer "+outer);
+			return;
+		}
+
 		long start = new Date().getTime();
 		logger.info(jobTitle + " 开始任务调度: " + (new Date().getTime() - start) + "ms");
 		Object obj = null;
