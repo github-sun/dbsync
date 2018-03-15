@@ -11,7 +11,7 @@ import org.quartz.JobExecutionException;
 
 import cn.com.rising.dbsync.db.DatabasePoolConnection;
 import cn.com.rising.dbsync.entity.Job;
-import cn.com.rising.dbsync.service.IDataSyn;
+import cn.com.rising.dbsync.service.IDataSynService;
 import cn.com.rising.dbsync.util.DatabaseUtil;
 
 public class DatabaseSyncTask implements org.quartz.Job {
@@ -54,9 +54,9 @@ public class DatabaseSyncTask implements org.quartz.Job {
 		} 
 		
 		if (obj != null) {
-			IDataSyn dataSyn = (IDataSyn) obj;
+			IDataSynService dataSyn = (IDataSynService) obj;
 			long eStart = new Date().getTime();
-			dataSyn.doDataSyn();
+			dataSyn.onService();
 			this.logger.info(jobTitle + " 结束任务调度: " + (new Date().getTime() - eStart) + "ms");
 		}
 	}

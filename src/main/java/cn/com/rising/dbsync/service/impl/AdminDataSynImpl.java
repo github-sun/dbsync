@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 
 import cn.com.rising.dbsync.entity.WriteData;
 import cn.com.rising.dbsync.service.AbstractReadWirte;
-import cn.com.rising.dbsync.service.IDataSyn;
+import cn.com.rising.dbsync.service.IDataSynService;
 
-public class AdminDataSynImpl extends AbstractReadWirte implements IDataSyn{
+public class AdminDataSynImpl extends AbstractReadWirte implements IDataSynService{
 
 	private static final Logger logger = Logger.getLogger(AdminDataSynImpl.class);
 
@@ -17,7 +17,7 @@ public class AdminDataSynImpl extends AbstractReadWirte implements IDataSyn{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void doDataSyn() {
+	public void onService() {
 		executeReadWrite();
 		logger.info("开始进行执行同步操作");
 	}

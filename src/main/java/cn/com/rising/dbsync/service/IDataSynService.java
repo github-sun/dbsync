@@ -1,9 +1,9 @@
 package cn.com.rising.dbsync.service;
 
-public interface IDataSyn {
+public interface IDataSynService {
 
 	/**
 	 * 处理数据同步
 	 */
-	void doDataSyn();
+	void onService();
 }
