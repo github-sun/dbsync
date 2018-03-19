@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import cn.com.rising.dbsync.dao.AdminDAO;
+import cn.com.rising.dbsync.dao.impl.AdminDAOImpl;
+import cn.com.rising.dbsync.entity.Admin;
 import cn.com.rising.dbsync.entity.AdminData;
 import cn.com.rising.dbsync.entity.BaseData;
 import cn.com.rising.dbsync.service.AbstractReadWirte;
@@ -13,14 +16,19 @@ import cn.com.rising.dbsync.service.AbstractReadWirte;
 public class AdminDataSynImpl extends AbstractReadWirte {
 
 	private static final Logger logger = Logger.getLogger(AdminDataSynImpl.class);
+	
+	private AdminDAO mAdminDAO;
 
 	public AdminDataSynImpl(Connection inner, Connection outer) {
 		super(inner, outer);
 		// TODO Auto-generated constructor stub
+		mAdminDAO = new AdminDAOImpl();
 	}
 
 	@Override
 	public List<? extends BaseData> readData() {
+		List<Admin> datas = mAdminDAO.getAdminDatas();
+		logger.info("datas "+datas.size());
 		List<AdminData> list = new ArrayList<AdminData>();
 		AdminData data = new AdminData();
 		data.setUsername("test");

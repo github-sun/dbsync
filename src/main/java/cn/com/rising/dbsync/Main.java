@@ -7,7 +7,6 @@ import static org.quartz.TriggerBuilder.newTrigger;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
@@ -19,14 +18,10 @@ import cn.com.rising.dbsync.db.DatabasePoolConnection;
 import cn.com.rising.dbsync.entity.DatabaseSource;
 import cn.com.rising.dbsync.entity.Job;
 import cn.com.rising.dbsync.util.JobsParse;
-import cn.com.rising.dbsync.util.MyBatisUtil;
 
 public class Main {
 
 	private static final Logger logger = Logger.getLogger(Main.class);
-	
-	private static final String innerConfigFile = "mybatis-inner-config.xml";
-	private static final String outerConfigFile = "mybatis-outer-config.xml";
 	
 	/**
 	 * 开始执行
@@ -38,10 +33,6 @@ public class Main {
 			logger.error("获取任务出现异常,请检查");
 			return;
 		}
-		
-		SqlSession innerSession = MyBatisUtil.getSession(innerConfigFile);
-		SqlSession outerSession = MyBatisUtil.getSession(innerConfigFile);
-		logger.error("innerSession "+innerSession + " outerSession "+outerSession);
 		
 		DatabaseSource innerSource = (DatabaseSource) jobsMap.get("inner");
 		DatabaseSource outerSource = (DatabaseSource) jobsMap.get("outer");
@@ -80,7 +71,6 @@ public class Main {
 				continue;
 			}
 		}
-		
 		
 	}
 	

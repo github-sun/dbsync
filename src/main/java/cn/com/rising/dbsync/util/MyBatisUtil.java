@@ -20,6 +20,17 @@ public class MyBatisUtil {
 		}
 		return session;
 	}
+	
+	public static SqlSessionFactory getSqlSessionFactory(String configFile) {
+		SqlSessionFactory factory = null;
+		try {
+			InputStream is = Resources.getResourceAsStream(configFile);
+			factory = new SqlSessionFactoryBuilder().build(is);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return factory;
+	}
 
 	public static void closeSession(SqlSession session) {
 		session.close();

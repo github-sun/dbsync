@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="com.yeyouluo.mybatis.druid.dao.userDao">
-    <select id="findAllUsers" resultType="cn.com.rising.dbsync.entity.Admin">
+<mapper namespace="cn.com.rising.dbsync.dao.adminDao">
+    <select id="getAdminDatas" resultType="cn.com.rising.dbsync.entity.Admin">
         select * from ADMIN
     </select>
 </mapper>
