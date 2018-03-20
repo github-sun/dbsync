@@ -3,6 +3,9 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="cn.com.rising.dbsync.dao.adminDao">
     <select id="getAdminDatas" resultType="cn.com.rising.dbsync.entity.Admin">
-        select * from ADMIN
+        select USER_NAME as username, PASSWORD as password,STATE as state, SALT as salt,IS_SUPER as isSuper, CREATE_DATE as createDate, UPDATE_DATE as updateDate from ADMIN
     </select>
+    <insert id="addAdmin" parameterType="cn.com.rising.dbsync.entity.Admin">
+        insert into ADMIN (USER_NAME,PASSWORD,STATE,SALT,IS_SUPER,CREATE_DATE,UPDATE_DATE) values(#{username},#{password},#{state},#{salt},#{isSuper},#{createDate},#{updateDate})
+    </insert>
 </mapper>

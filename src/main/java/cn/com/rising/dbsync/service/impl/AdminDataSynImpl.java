@@ -21,7 +21,6 @@ public class AdminDataSynImpl extends AbstractReadWirte {
 
 	public AdminDataSynImpl(Connection inner, Connection outer) {
 		super(inner, outer);
-		// TODO Auto-generated constructor stub
 		mAdminDAO = new AdminDAOImpl();
 	}
 
@@ -29,18 +28,24 @@ public class AdminDataSynImpl extends AbstractReadWirte {
 	public List<? extends BaseData> readData() {
 		List<Admin> datas = mAdminDAO.getAdminDatas();
 		logger.info("datas "+datas.size());
-		List<AdminData> list = new ArrayList<AdminData>();
-		AdminData data = new AdminData();
-		data.setUsername("test");
-		list.add(data);
-		return list;
+//		List<AdminData> list = new ArrayList<AdminData>();
+//		AdminData data = new AdminData();
+//		data.setUsername("test");
+//		list.add(data);
+		return datas;
 	}
 
 	@Override
-	public void writeData(List<? extends BaseData> data) {
+	public void writeData(List<? extends BaseData> datas) {
 		@SuppressWarnings("unchecked")
-		List<AdminData> list = (List<AdminData>) data;
-		logger.info("list "+list.get(0).getUsername());
+//		List<AdminData> list = (List<AdminData>) data;
+//		logger.info("list "+list.get(0).getUsername());
+		List<Admin> list = (List<Admin>) datas;
+		logger.info("list "+list.get(0).getUsername());		
+		for(Admin data : list) {
+			mAdminDAO.addAdmin(data);
+		}
+		
 	}
 
 }

@@ -2,7 +2,7 @@ package cn.com.rising.dbsync.entity;
 
 import java.util.Date;
 
-public class Admin {
+public class Admin extends BaseData{
 	
 	//主键
 	private int id;

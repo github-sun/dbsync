@@ -6,5 +6,7 @@ import cn.com.rising.dbsync.entity.Admin;
 
 public interface AdminDAO {
 
-	 public List<Admin> getAdminDatas();
+	 List<Admin> getAdminDatas();
+	 
+	 boolean addAdmin(Admin admin);
 }
